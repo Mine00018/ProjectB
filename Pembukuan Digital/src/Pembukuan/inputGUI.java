@@ -5,12 +5,13 @@
  */
 package Pembukuan;
 import java.text.SimpleDateFormat;
+import javax.swing.JFrame;
 /**
  *
  * @author Claus
  */
 public class inputGUI extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form inputGUI
      */
@@ -140,27 +141,27 @@ public class inputGUI extends javax.swing.JFrame {
 
     private void rekapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapButtonActionPerformed
         new rekapGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_rekapButtonActionPerformed
 
     private void stokButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokButtonActionPerformed
        new stokBarangGUI().setVisible(true);
-       this.setVisible(false);
+       this.dispose();
     }//GEN-LAST:event_stokButtonActionPerformed
 
     private void inputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputButtonActionPerformed
         new inputGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_inputButtonActionPerformed
 
     private void hutangButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hutangButtonActionPerformed
        new hutangGUI().setVisible(true);
-       this.setVisible(false);
+       this.dispose();
     }//GEN-LAST:event_hutangButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
         new optionGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_optionButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -171,8 +172,8 @@ public class inputGUI extends javax.swing.JFrame {
         SimpleDateFormat dcn= new SimpleDateFormat("yyyy-MM-dd");
         String date;
         date = dcn.format(dateChooser.getDate());
-        new inputSaldoAwalGUI(this, rootPaneCheckingEnabled).setVisible(true);
-        
+        new inputSaldoAwalGUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_tombolPilihHariActionPerformed
 
     

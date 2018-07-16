@@ -40,12 +40,21 @@ public class debetKreditGUI extends javax.swing.JFrame {
         quitButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jButton1.setText("Debet");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Kredit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Myriad Pro Light", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,32 +147,42 @@ public class debetKreditGUI extends javax.swing.JFrame {
 
     private void inputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputButtonActionPerformed
         new inputGUI().setVisible(true);
-        this.setVisible(false);
+       this.dispose();
     }//GEN-LAST:event_inputButtonActionPerformed
 
     private void stokButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokButtonActionPerformed
         new stokBarangGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_stokButtonActionPerformed
 
     private void rekapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapButtonActionPerformed
         new rekapGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_rekapButtonActionPerformed
 
     private void hutangButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hutangButtonActionPerformed
         new hutangGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_hutangButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
         new optionGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_optionButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new inputDebetGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new inputKredit().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
