@@ -114,27 +114,27 @@ public class rekapGUI extends javax.swing.JFrame {
 
     private void inputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputButtonActionPerformed
         new inputGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_inputButtonActionPerformed
 
     private void stokButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokButtonActionPerformed
         new stokBarangGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();;
     }//GEN-LAST:event_stokButtonActionPerformed
 
     private void rekapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapButtonActionPerformed
         new rekapGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_rekapButtonActionPerformed
 
     private void hutangButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hutangButtonActionPerformed
         new hutangGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_hutangButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
         new optionGUI().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_optionButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
