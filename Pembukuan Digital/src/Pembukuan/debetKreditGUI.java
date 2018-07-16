@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 package Pembukuan;
-import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Claus
  */
-public class inputGUI extends javax.swing.JFrame {
+public class debetKreditGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form inputGUI
+     * Creates new form debetKreditGUI
      */
-    public inputGUI() {
+    public debetKreditGUI() {
         initComponents();
     }
 
@@ -27,9 +27,9 @@ public class inputGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        tombolPilihHari = new javax.swing.JButton();
-        dateChooser = new com.toedter.calendar.JCalendar();
         jMenuBar1 = new javax.swing.JMenuBar();
         actionButton = new javax.swing.JMenu();
         inputButton = new javax.swing.JMenuItem();
@@ -41,19 +41,15 @@ public class inputGUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pilih Hari");
+        jButton1.setText("Debet");
 
-        tombolPilihHari.setText("Pilih Hari");
-        tombolPilihHari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tombolPilihHariActionPerformed(evt);
-            }
-        });
+        jButton3.setText("Kredit");
+
+        jLabel1.setFont(new java.awt.Font("Myriad Pro Light", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Pilih Jenis Input Data");
 
         actionButton.setText("Action");
 
@@ -116,46 +112,48 @@ public class inputGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(tombolPilihHari)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tombolPilihHari)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rekapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapButtonActionPerformed
-        new rekapGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_rekapButtonActionPerformed
-
-    private void stokButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokButtonActionPerformed
-       new stokBarangGUI().setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_stokButtonActionPerformed
-
     private void inputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputButtonActionPerformed
         new inputGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_inputButtonActionPerformed
 
+    private void stokButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokButtonActionPerformed
+        new stokBarangGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_stokButtonActionPerformed
+
+    private void rekapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapButtonActionPerformed
+        new rekapGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_rekapButtonActionPerformed
+
     private void hutangButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hutangButtonActionPerformed
-       new hutangGUI().setVisible(true);
-       this.setVisible(false);
+        new hutangGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_hutangButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
@@ -164,18 +162,9 @@ public class inputGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_optionButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
-    private void tombolPilihHariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolPilihHariActionPerformed
-        SimpleDateFormat dcn= new SimpleDateFormat("yyyy-MM-dd");
-        String date;
-        date = dcn.format(dateChooser.getDate());
-        new inputSaldoAwalGUI(this, rootPaneCheckingEnabled).setVisible(true);
-        
-    }//GEN-LAST:event_tombolPilihHariActionPerformed
-
-    
     /**
      * @param args the command line arguments
      */
@@ -187,35 +176,36 @@ public class inputGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(inputGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(debetKreditGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(inputGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(debetKreditGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(inputGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(debetKreditGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(inputGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(debetKreditGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new inputGUI().setVisible(true);
+                new debetKreditGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu actionButton;
-    private com.toedter.calendar.JCalendar dateChooser;
     private javax.swing.JMenuItem hutangButton;
     private javax.swing.JMenuItem inputButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -223,6 +213,5 @@ public class inputGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem rekapButton;
     private javax.swing.JMenuItem stokButton;
-    private javax.swing.JButton tombolPilihHari;
     // End of variables declaration//GEN-END:variables
 }
