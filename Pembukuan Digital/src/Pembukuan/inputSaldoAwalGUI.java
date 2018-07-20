@@ -38,7 +38,7 @@ public class inputSaldoAwalGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         okButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Myriad Pro Light", 1, 18)); // NOI18N

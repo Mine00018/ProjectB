@@ -40,6 +40,7 @@ public class debetKreditGUI extends javax.swing.JFrame {
         quitButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jButton1.setText("Debet");
