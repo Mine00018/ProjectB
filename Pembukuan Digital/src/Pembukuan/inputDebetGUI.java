@@ -5,17 +5,20 @@
  */
 package Pembukuan;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Claus
  */
 public class inputDebetGUI extends javax.swing.JFrame {
-
+    DefaultTableModel model; 
     /**
      * Creates new form inputDebetGUI
      */
     public inputDebetGUI() {
         initComponents();
+        String []judul={};
     }
 
     /**
@@ -27,21 +30,27 @@ public class inputDebetGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jenisItem = new javax.swing.JComboBox<>();
-        jenisPengeluaran = new javax.swing.JComboBox<>();
-        beratItem = new javax.swing.JTextField();
-        namaDebet = new javax.swing.JTextField();
-        nominalDebet = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        input3 = new javax.swing.JComboBox<>();
+        input2 = new javax.swing.JComboBox<>();
+        input4 = new javax.swing.JTextField();
+        input5 = new javax.swing.JTextField();
+        input6 = new javax.swing.JTextField();
+        tombolTambah = new javax.swing.JButton();
         tambahItem = new javax.swing.JButton();
-        dateChooser = new com.toedter.calendar.JDateChooser();
+        input1 = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
+        tombolUpdate = new javax.swing.JButton();
+        tombolHapus = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         actionButton = new javax.swing.JMenu();
         inputButton = new javax.swing.JMenuItem();
@@ -52,28 +61,54 @@ public class inputDebetGUI extends javax.swing.JFrame {
         quitButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(363, 436));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Myriad Pro Light", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Input Debet");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 30));
 
         jLabel2.setText("2. Jenis Debet");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, 181, -1));
 
         jLabel3.setText("3. Jenis Item");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, 181, -1));
 
         jLabel4.setText("4. Berat (Kg)");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 36, 181, -1));
 
         jLabel5.setText("5. Nama");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 85, 181, -1));
 
         jLabel6.setText("6. Jumlah Nominal (Rp)");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 143, 181, -1));
 
-        jenisItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pala", "Kopra", "Cengkih", "Sirip Hiu", "Pribadi" }));
+        input3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pala", "Kopra", "Cengkih", "Sirip Hiu", "Pribadi" }));
+        getContentPane().add(input3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, 181, -1));
 
-        jenisPengeluaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko", "Kapal" }));
+        input2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko", "Kapal" }));
+        getContentPane().add(input2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 114, 181, -1));
+        getContentPane().add(input4, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 54, 181, -1));
+        getContentPane().add(input5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 112, 181, -1));
+        getContentPane().add(input6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 163, 181, -1));
 
-        jButton1.setText("OK");
+        tombolTambah.setText("Tambah");
+        getContentPane().add(tombolTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 199, -1, -1));
 
         tambahItem.setText("Tambah Jenis Item");
         tambahItem.addActionListener(new java.awt.event.ActionListener() {
@@ -81,8 +116,32 @@ public class inputDebetGUI extends javax.swing.JFrame {
                 tambahItemActionPerformed(evt);
             }
         });
+        getContentPane().add(tambahItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 165, -1, -1));
+        getContentPane().add(input1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, 181, -1));
 
         jLabel7.setText("1. Tanggal");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, -1, -1));
+
+        tombolUpdate.setText("Update");
+        getContentPane().add(tombolUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 199, -1, -1));
+
+        tombolHapus.setText("Hapus");
+        getContentPane().add(tombolHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 199, 73, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 268, 590, 210));
 
         actionButton.setText("Action");
 
@@ -140,72 +199,6 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jenisPengeluaran, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jenisItem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(beratItem)
-                                    .addComponent(namaDebet)
-                                    .addComponent(nominalDebet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1)
-                                    .addGap(134, 134, 134))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tambahItem))
-                    .addComponent(jLabel7))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jenisPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jenisItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tambahItem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(beratItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaDebet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nominalDebet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
 
         pack();
         setLocationRelativeTo(null);
@@ -281,11 +274,14 @@ public class inputDebetGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu actionButton;
-    private javax.swing.JTextField beratItem;
-    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JMenuItem hutangButton;
+    private com.toedter.calendar.JDateChooser input1;
+    private javax.swing.JComboBox<String> input2;
+    private javax.swing.JComboBox<String> input3;
+    private javax.swing.JTextField input4;
+    private javax.swing.JTextField input5;
+    private javax.swing.JTextField input6;
     private javax.swing.JMenuItem inputButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -295,14 +291,17 @@ public class inputDebetGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JComboBox<String> jenisItem;
-    private javax.swing.JComboBox<String> jenisPengeluaran;
-    private javax.swing.JTextField namaDebet;
-    private javax.swing.JTextField nominalDebet;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JMenuItem optionButton;
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem rekapButton;
     private javax.swing.JMenuItem stokButton;
     private javax.swing.JButton tambahItem;
+    private javax.swing.JButton tombolHapus;
+    private javax.swing.JButton tombolTambah;
+    private javax.swing.JButton tombolUpdate;
     // End of variables declaration//GEN-END:variables
 }
