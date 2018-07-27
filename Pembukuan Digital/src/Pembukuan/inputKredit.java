@@ -24,6 +24,7 @@ public class inputKredit extends javax.swing.JFrame {
      */
     public inputKredit() {
         initComponents();
+        combobox();
         String [] judul = {"No", "No_Nota", "Tanggal", "Nama_Penjual", "Jenis_Barang", "Bruto", "Tara_Colly","PTGKadarAir", "PTGLain","Netto", "Harga_Satuan", "Harga_Total", "Overhead","Lain-Lain","Jumlah"};
         model = new DefaultTableModel (judul,0);
         jTable1.setModel(model);
@@ -160,8 +161,6 @@ public class inputKredit extends javax.swing.JFrame {
                 input6KeyReleased(evt);
             }
         });
-
-        input4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         input5.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
@@ -424,7 +423,7 @@ public class inputKredit extends javax.swing.JFrame {
                                         .addGap(277, 277, 277))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(181, 181, 181))))))
+                                        .addGap(164, 164, 164))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())))
@@ -626,10 +625,19 @@ public class inputKredit extends javax.swing.JFrame {
     }//GEN-LAST:event_input13KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
-        String tanggal = formatTgl.format(input1.getDate());
-        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-       cn.createStatement().executeUpdate("insert into pengeluaran (`No_Nota`, `Tanggal`, `Nama_Penjual`, `Jenis_Barang`, `Bruto`, `Tara_Colly`, `Potongan_KadangAir`, `Potongan_Lain`, `Netto`, `Harga_Satuan`, `Harga_Total`, `Overhead`, `PengeluaranLain`, `Jumlah`) values "+"('"+tanggal+"','"+input2.getText()+"','"+input3.getText()+"','"+input4.getText()+"','"+input5.getText()+"','"+input6.getText()+"','"+input7.getText()+"','"+input8.getText()+"','"+input9.getText()+"','"+input10.getText()+"','"+input11.getText()+"','"+input12.getText()+"','"+input13.getText()+"','"+input14.getText()+"'")")
+        try {
+            SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = formatTgl.format(input1.getDate());
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            cn.createStatement().executeUpdate("INSERT INTO pengeluaran (No_Nota,Tanggal,Nama_Penjual,Jenis_Barang,Bruto,Tara_Colly,Potongan_KadangAir,Potongan_Lain,Netto,Harga_Satuan,Harga_Total,Overhead,PengeluaranLain,Jumlah) VALUES"
+                    +"('"+input3.getText()+"','"+tanggal+"','"+input2.getText()+"','"+input4.getSelectedItem().toString()+"','"+input5.getText()+"','"+input6.getText()+"','"+input7.getText()+"','"+input8.getText()+"','"+input9.getText()+"','"+input10.getText()+"','"+input11.getText()+"','"+input12.getText()+"','"+input13.getText()+"','"+input14.getText()+"')");
+                      
+            tampilkan();
+        } catch (SQLException ex) {
+            Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -789,5 +797,23 @@ public class inputKredit extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    private void combobox(){
+        Connection con=null;
+        PreparedStatement pst=null;
+        ResultSet rs=null;
+        try {            
+          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+           String sql = "select * from daftarBarang";
+           pst = con.prepareStatement(sql);
+           rs = pst.executeQuery();
+           while(rs.next())
+           {
+               String name = rs.getString("barang");
+              input4.addItem(name);
+           }
+   } catch (Exception e){
+        
+    }
     }
 }
