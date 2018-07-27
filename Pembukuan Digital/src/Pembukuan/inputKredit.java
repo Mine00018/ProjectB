@@ -8,22 +8,29 @@ package Pembukuan;
 
 import com.mysql.jdbc.Driver;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Claus
  */
 public class inputKredit extends javax.swing.JFrame {
-
+    DefaultTableModel model ;
     /**
      * Creates new form inputKredit
      */
     public inputKredit() {
         initComponents();
+        String [] judul = {"No", "No_Nota", "Tanggal", "Nama_Penjual", "Jenis_Barang", "Bruto", "Tara_Colly","PTGKadarAir", "PTGLain","Netto", "Harga_Satuan", "Harga_Total", "Overhead","Lain-Lain","Jumlah"};
+        model = new DefaultTableModel (judul,0);
+        jTable1.setModel(model);
+        tampilkan ();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,11 +39,10 @@ public class inputKredit extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         judul = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        input1 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -51,19 +57,19 @@ public class inputKredit extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        input2 = new javax.swing.JTextField();
+        input3 = new javax.swing.JTextField();
+        input6 = new javax.swing.JTextField();
+        input4 = new javax.swing.JComboBox<>();
+        input5 = new javax.swing.JTextField();
+        input7 = new javax.swing.JTextField();
+        input8 = new javax.swing.JTextField();
+        input9 = new javax.swing.JTextField();
+        input10 = new javax.swing.JTextField();
+        input11 = new javax.swing.JTextField();
+        input12 = new javax.swing.JTextField();
+        input13 = new javax.swing.JTextField();
+        input14 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -134,133 +140,141 @@ public class inputKredit extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setText("JUMLAH (Rp)");
 
-        jTextField4.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        input6.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField4InputMethodTextChanged(evt);
+                input6InputMethodTextChanged(evt);
             }
         });
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        input6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                input6ActionPerformed(evt);
             }
         });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        input6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField4KeyPressed(evt);
+                input6KeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
+                input6KeyReleased(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        input4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField3.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        input5.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField3InputMethodTextChanged(evt);
+                input5InputMethodTextChanged(evt);
             }
         });
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        input5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                input5ActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        input5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField3KeyPressed(evt);
+                input5KeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
+                input5KeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                input5KeyTyped(evt);
             }
         });
 
-        jTextField5.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        input7.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField5InputMethodTextChanged(evt);
+                input7InputMethodTextChanged(evt);
             }
         });
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        input7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                input7ActionPerformed(evt);
             }
         });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        input7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField5KeyPressed(evt);
+                input7KeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField5KeyReleased(evt);
+                input7KeyReleased(evt);
             }
         });
 
-        jTextField6.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        input8.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField6InputMethodTextChanged(evt);
+                input8InputMethodTextChanged(evt);
             }
         });
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        input8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                input8ActionPerformed(evt);
             }
         });
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+        input8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField6KeyPressed(evt);
+                input8KeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField6KeyReleased(evt);
-            }
-        });
-
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField8KeyReleased(evt);
+                input8KeyReleased(evt);
             }
         });
 
-        jTextField9.setEditable(false);
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
+        input9.setEditable(false);
+        input9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+        input10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField10KeyReleased(evt);
+                input10KeyReleased(evt);
             }
         });
 
-        jTextField11.addKeyListener(new java.awt.event.KeyAdapter() {
+        input11.setEditable(false);
+        input11.setBackground(new java.awt.Color(255, 255, 255));
+
+        input12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField11KeyReleased(evt);
+                input12KeyReleased(evt);
+            }
+        });
+
+        input13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                input13KeyReleased(evt);
             }
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "No_Nota", "Tanggal", "Nama_Penjual", "Jenis_Barang", "Bruto", "Tara_Colly", "PTGKadarAir", "PTGLain", "Netto", "Harga_Satuan", "Harga_Total", "Overhead", "Lain-Lain", "Jumlah"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
         jButton1.setText("Tambah");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Ganti");
 
@@ -356,18 +370,18 @@ public class inputKredit extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(input9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel16))
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(input6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField8)
-                                        .addComponent(jTextField9)
-                                        .addComponent(jTextField10)
-                                        .addComponent(jTextField11)
-                                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                        .addComponent(input10)
+                                        .addComponent(input11)
+                                        .addComponent(input12)
+                                        .addComponent(input13)
+                                        .addComponent(input14, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -384,18 +398,22 @@ public class inputKredit extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(input2, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(input3, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(input4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(input7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(input8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(input5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -425,43 +443,42 @@ public class inputKredit extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(input10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(input11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(input12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(input13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(input14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(input5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(input3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(input4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(input6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -475,17 +492,17 @@ public class inputKredit extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(input7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(input8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(input9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -528,85 +545,92 @@ public class inputKredit extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void input6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input6ActionPerformed
       
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_input6ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void input5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input5ActionPerformed
         
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_input5ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void input7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input7ActionPerformed
         
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_input7ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void input8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input8ActionPerformed
        
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_input8ActionPerformed
 
-    private void jTextField3InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField3InputMethodTextChanged
+    private void input5InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_input5InputMethodTextChanged
     
-    }//GEN-LAST:event_jTextField3InputMethodTextChanged
+    }//GEN-LAST:event_input5InputMethodTextChanged
 
-    private void jTextField4InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField4InputMethodTextChanged
+    private void input6InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_input6InputMethodTextChanged
         
-    }//GEN-LAST:event_jTextField4InputMethodTextChanged
+    }//GEN-LAST:event_input6InputMethodTextChanged
 
-    private void jTextField5InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField5InputMethodTextChanged
+    private void input7InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_input7InputMethodTextChanged
       
-    }//GEN-LAST:event_jTextField5InputMethodTextChanged
+    }//GEN-LAST:event_input7InputMethodTextChanged
 
-    private void jTextField6InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField6InputMethodTextChanged
+    private void input8InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_input8InputMethodTextChanged
         
-    }//GEN-LAST:event_jTextField6InputMethodTextChanged
+    }//GEN-LAST:event_input8InputMethodTextChanged
 
-    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+    private void input6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input6KeyPressed
         
-    }//GEN-LAST:event_jTextField4KeyPressed
+    }//GEN-LAST:event_input6KeyPressed
 
-    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+    private void input5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input5KeyPressed
       
-    }//GEN-LAST:event_jTextField3KeyPressed
+    }//GEN-LAST:event_input5KeyPressed
 
-    private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
+    private void input7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input7KeyPressed
         
-    }//GEN-LAST:event_jTextField5KeyPressed
+    }//GEN-LAST:event_input7KeyPressed
 
-    private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
+    private void input8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input8KeyPressed
         
-    }//GEN-LAST:event_jTextField6KeyPressed
+    }//GEN-LAST:event_input8KeyPressed
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void input5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input5KeyTyped
         
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_input5KeyTyped
 
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+    private void input5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input5KeyReleased
         kalkulasiNetto();
-    }//GEN-LAST:event_jTextField3KeyReleased
+    }//GEN-LAST:event_input5KeyReleased
 
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+    private void input6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input6KeyReleased
         kalkulasiNetto();
-    }//GEN-LAST:event_jTextField4KeyReleased
+    }//GEN-LAST:event_input6KeyReleased
 
-    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+    private void input7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input7KeyReleased
         kalkulasiNetto();
-    }//GEN-LAST:event_jTextField5KeyReleased
+    }//GEN-LAST:event_input7KeyReleased
 
-    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+    private void input8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input8KeyReleased
         kalkulasiNetto();
-    }//GEN-LAST:event_jTextField6KeyReleased
+    }//GEN-LAST:event_input8KeyReleased
 
-    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+    private void input10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input10KeyReleased
         kalkulasiHarga();
-    }//GEN-LAST:event_jTextField8KeyReleased
+    }//GEN-LAST:event_input10KeyReleased
 
-    private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyReleased
+    private void input12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input12KeyReleased
         kalkulasiJumlah();
-    }//GEN-LAST:event_jTextField10KeyReleased
+    }//GEN-LAST:event_input12KeyReleased
 
-    private void jTextField11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyReleased
+    private void input13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input13KeyReleased
         kalkulasiJumlah();
-    }//GEN-LAST:event_jTextField11KeyReleased
+    }//GEN-LAST:event_input13KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+        String tanggal = formatTgl.format(input1.getDate());
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+       cn.createStatement().executeUpdate("insert into pengeluaran (`No_Nota`, `Tanggal`, `Nama_Penjual`, `Jenis_Barang`, `Bruto`, `Tara_Colly`, `Potongan_KadangAir`, `Potongan_Lain`, `Netto`, `Harga_Satuan`, `Harga_Total`, `Overhead`, `PengeluaranLain`, `Jumlah`) values "+"('"+tanggal+"','"+input2.getText()+"','"+input3.getText()+"','"+input4.getText()+"','"+input5.getText()+"','"+input6.getText()+"','"+input7.getText()+"','"+input8.getText()+"','"+input9.getText()+"','"+input10.getText()+"','"+input11.getText()+"','"+input12.getText()+"','"+input13.getText()+"','"+input14.getText()+"'")")
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -619,7 +643,7 @@ public class inputKredit extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -646,13 +670,25 @@ public class inputKredit extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu actionButton;
     private javax.swing.JMenuItem hutangButton;
+    private com.toedter.calendar.JDateChooser input1;
+    private javax.swing.JTextField input10;
+    private javax.swing.JTextField input11;
+    private javax.swing.JTextField input12;
+    private javax.swing.JTextField input13;
+    private javax.swing.JTextField input14;
+    private javax.swing.JTextField input2;
+    private javax.swing.JTextField input3;
+    private javax.swing.JComboBox<String> input4;
+    private javax.swing.JTextField input5;
+    private javax.swing.JTextField input6;
+    private javax.swing.JTextField input7;
+    private javax.swing.JTextField input8;
+    private javax.swing.JTextField input9;
     private javax.swing.JMenuItem inputButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -673,19 +709,7 @@ public class inputKredit extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel judul;
     private javax.swing.JMenuItem optionButton;
     private javax.swing.JMenuItem quitButton;
@@ -696,63 +720,72 @@ public class inputKredit extends javax.swing.JFrame {
     private void kalkulasiNetto() {
         Float bruto,tara,air,beratLain,netto;
         
-        if(jTextField3.getText().isEmpty())
+        if(input5.getText().isEmpty())
            bruto=0f;
-        else bruto= Float.parseFloat(jTextField3.getText());
+        else bruto= Float.parseFloat(input5.getText());
         
-        if(jTextField4.getText().isEmpty())
+        if(input6.getText().isEmpty())
             tara=0f;
-        else tara= Float.parseFloat(jTextField4.getText());
+        else tara= Float.parseFloat(input6.getText());
         
-        if(jTextField5.getText().isEmpty())
+        if(input7.getText().isEmpty())
             air=0f;   
-        else air= Float.parseFloat(jTextField5.getText());
+        else air= Float.parseFloat(input7.getText());
         
-        if(jTextField6.getText().isEmpty())
+        if(input8.getText().isEmpty())
             beratLain=0f;
-        else beratLain= Float.parseFloat(jTextField6.getText());
+        else beratLain= Float.parseFloat(input8.getText());
         
         netto= bruto-(tara+air+beratLain);
-        jTextField7.setText(Float.toString(netto));
+        input9.setText(Float.toString(netto));
     }
 
     private void kalkulasiHarga() {
         Float netto, hargaTotal;
         int hargaSatuan, hargaTotalInt;
-        if (jTextField7.getText().isEmpty())
+        if (input9.getText().isEmpty())
             netto=0f;
-        else netto= Float.parseFloat(jTextField7.getText());
+        else netto= Float.parseFloat(input9.getText());
         
-        if (jTextField8.getText().isEmpty())
+        if (input10.getText().isEmpty())
             hargaSatuan=0;
-        else hargaSatuan= Integer.parseInt(jTextField8.getText());
+        else hargaSatuan= Integer.parseInt(input10.getText());
         
         hargaTotal=netto*hargaSatuan;
         hargaTotalInt=Math.round(hargaTotal);
-        jTextField9.setText(Integer.toString(hargaTotalInt));
+        input11.setText(Integer.toString(hargaTotalInt));
     }
 
     private void kalkulasiJumlah() {
         int frak, lain,harga, jumlah;
-        if (jTextField9.getText().isEmpty())
+        if (input11.getText().isEmpty())
             harga=0;
-        else harga=Integer.parseInt(jTextField9.getText());
+        else harga=Integer.parseInt(input11.getText());
         
-        if (jTextField10.getText().isEmpty())
+        if (input12.getText().isEmpty())
             frak=0;
-        else frak=Integer.parseInt(jTextField10.getText());
+        else frak=Integer.parseInt(input12.getText());
         
-        if (jTextField11.getText().isEmpty())
+        if (input13.getText().isEmpty())
             lain=0;
-        else lain=Integer.parseInt(jTextField11.getText());
+        else lain=Integer.parseInt(input13.getText());
         
         jumlah=harga+frak+lain;
-        jTextField12.setText(Integer.toString(jumlah));
+        input14.setText(Integer.toString(jumlah));
     }
     private void tampilkan() {
+        int row =jTable1.getRowCount ();
+        for (int a=0; a<row;a++){
+            model.removeRow (0);
+        
+        }
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
             ResultSet rs = cn.createStatement ().executeQuery(" select * from pengeluaran ");
+            while (rs.next()){
+               String data[]={rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)+"kg",rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15)};
+               model.addRow (data);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
         }

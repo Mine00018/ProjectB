@@ -5,6 +5,12 @@
  */
 package Pembukuan;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,12 +19,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class inputDebetGUI extends javax.swing.JFrame {
     DefaultTableModel model; 
+    Connection con=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
     /**
      * Creates new form inputDebetGUI
      */
     public inputDebetGUI() {
         initComponents();
-        String []judul={};
+        combobox();
     }
 
     /**
@@ -98,7 +107,6 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jLabel6.setText("6. Jumlah Nominal (Rp)");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 143, 181, -1));
 
-        input3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pala", "Kopra", "Cengkih", "Sirip Hiu", "Pribadi" }));
         getContentPane().add(input3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, 181, -1));
 
         input2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko", "Kapal" }));
@@ -108,6 +116,11 @@ public class inputDebetGUI extends javax.swing.JFrame {
         getContentPane().add(input6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 163, 181, -1));
 
         tombolTambah.setText("Tambah");
+        tombolTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolTambahActionPerformed(evt);
+            }
+        });
         getContentPane().add(tombolTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 199, -1, -1));
 
         tambahItem.setText("Tambah Jenis Item");
@@ -237,6 +250,13 @@ public class inputDebetGUI extends javax.swing.JFrame {
         new optionGUI().setVisible(true);
     }//GEN-LAST:event_tambahItemActionPerformed
 
+    private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
+      SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+      String tanggal = formatTgl.format(input1.getDate());
+      String berat = input4.getText();
+      DialogMessage();
+    }//GEN-LAST:event_tombolTambahActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,4 +324,28 @@ public class inputDebetGUI extends javax.swing.JFrame {
     private javax.swing.JButton tombolTambah;
     private javax.swing.JButton tombolUpdate;
     // End of variables declaration//GEN-END:variables
+
+    private void combobox() {
+        try {            
+          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+           String sql = "select * from daftarBarang";
+           pst = con.prepareStatement(sql);
+           rs = pst.executeQuery();
+           while(rs.next())
+           {
+               String name = rs.getString("barang");
+              input3.addItem(name);
+           }
+   } catch (Exception e){
+        
+    }
+    }
+
+    private void DialogMessage() {
+        try {
+            JOptionPane.showMessageDialog(rootPane, "sukses");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "gagal");
+        }
+    }
 }
