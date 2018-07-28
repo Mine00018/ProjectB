@@ -337,7 +337,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
               inputItem.addItem(name);
            }
         } catch (Exception e){
-        
+             JOptionPane.showMessageDialog(null, e);
             }
     }
     
