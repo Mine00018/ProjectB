@@ -52,7 +52,7 @@ public class TambahJenisItemGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("KEMBALI");
+        jButton2.setText("BATAL");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -103,7 +103,7 @@ public class TambahJenisItemGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_itemsActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new optionGUI().setVisible(true);
+        new inputDebetGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

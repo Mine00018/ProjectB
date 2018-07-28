@@ -809,7 +809,7 @@ public class inputKredit extends javax.swing.JFrame {
            rs = pst.executeQuery();
            while(rs.next())
            {
-               String name = rs.getString("barang");
+              String name = rs.getString("barang");
               input4.addItem(name);
            }
    } catch (Exception e){

@@ -27,7 +27,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
      */
     public inputDebetGUI() {
         initComponents();
-        combobox();
+        comboboxItem();
     }
 
     /**
@@ -43,18 +43,18 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        input3 = new javax.swing.JComboBox<>();
-        input2 = new javax.swing.JComboBox<>();
-        input4 = new javax.swing.JTextField();
-        input5 = new javax.swing.JTextField();
-        input6 = new javax.swing.JTextField();
+        inputItem = new javax.swing.JComboBox<>();
+        inputJenisPemasukan = new javax.swing.JComboBox<>();
+        inputNetto = new javax.swing.JTextField();
+        inputNamaPemasukan = new javax.swing.JTextField();
+        inputNominal = new javax.swing.JTextField();
         tombolTambah = new javax.swing.JButton();
         tambahItem = new javax.swing.JButton();
-        input1 = new com.toedter.calendar.JDateChooser();
+        inputTGL = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         tombolUpdate = new javax.swing.JButton();
         tombolHapus = new javax.swing.JButton();
@@ -92,28 +92,28 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jLabel1.setText("Input Debet");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 30));
 
-        jLabel2.setText("2. Jenis Debet");
+        jLabel2.setText("2. Jenis Pemasukan");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, 181, -1));
 
-        jLabel3.setText("3. Jenis Item");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, 181, -1));
+        jLabel10.setText("3. Jenis Item");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, 181, -1));
 
-        jLabel4.setText("4. Berat (Kg)");
+        jLabel4.setText("4. Netto (KG)");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 36, 181, -1));
 
-        jLabel5.setText("5. Nama");
+        jLabel5.setText("5. Nama Pemasukan");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 85, 181, -1));
 
         jLabel6.setText("6. Jumlah Nominal (Rp)");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 143, 181, -1));
 
-        getContentPane().add(input3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, 181, -1));
+        getContentPane().add(inputItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, 181, -1));
 
-        input2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko", "Kapal" }));
-        getContentPane().add(input2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 114, 181, -1));
-        getContentPane().add(input4, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 54, 181, -1));
-        getContentPane().add(input5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 112, 181, -1));
-        getContentPane().add(input6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 163, 181, -1));
+        inputJenisPemasukan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko", "Kapal" }));
+        getContentPane().add(inputJenisPemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 114, 181, -1));
+        getContentPane().add(inputNetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 54, 181, -1));
+        getContentPane().add(inputNamaPemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 112, 181, -1));
+        getContentPane().add(inputNominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 163, 181, -1));
 
         tombolTambah.setText("Tambah");
         tombolTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +130,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tambahItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 165, -1, -1));
-        getContentPane().add(input1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, 181, -1));
+        getContentPane().add(inputTGL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, 181, -1));
 
         jLabel7.setText("1. Tanggal");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, -1, -1));
@@ -247,13 +247,13 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void tambahItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemActionPerformed
-        new optionGUI().setVisible(true);
+        new TambahJenisItemGUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_tambahItemActionPerformed
 
     private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
       SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
-      String tanggal = formatTgl.format(input1.getDate());
-      String berat = input4.getText();
+      String tanggal = formatTgl.format(inputTGL.getDate());
       DialogMessage();
     }//GEN-LAST:event_tombolTambahActionPerformed
 
@@ -295,16 +295,16 @@ public class inputDebetGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu actionButton;
     private javax.swing.JMenuItem hutangButton;
-    private com.toedter.calendar.JDateChooser input1;
-    private javax.swing.JComboBox<String> input2;
-    private javax.swing.JComboBox<String> input3;
-    private javax.swing.JTextField input4;
-    private javax.swing.JTextField input5;
-    private javax.swing.JTextField input6;
     private javax.swing.JMenuItem inputButton;
+    private javax.swing.JComboBox<String> inputItem;
+    private javax.swing.JComboBox<String> inputJenisPemasukan;
+    private javax.swing.JTextField inputNamaPemasukan;
+    private javax.swing.JTextField inputNetto;
+    private javax.swing.JTextField inputNominal;
+    private com.toedter.calendar.JDateChooser inputTGL;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -325,7 +325,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
     private javax.swing.JButton tombolUpdate;
     // End of variables declaration//GEN-END:variables
 
-    private void combobox() {
+    private void comboboxItem() {
         try {            
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
            String sql = "select * from daftarBarang";
@@ -333,19 +333,29 @@ public class inputDebetGUI extends javax.swing.JFrame {
            rs = pst.executeQuery();
            while(rs.next())
            {
-               String name = rs.getString("barang");
-              input3.addItem(name);
+              String name = rs.getString("barang");
+              inputItem.addItem(name);
            }
-   } catch (Exception e){
+        } catch (Exception e){
         
+            }
     }
+    
+    private void insertDB(){
+         try {            
+          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+           String sql = "select * from daftarBarang";
+           pst = con.prepareStatement(sql);
+           rs = pst.executeQuery(); 
+         } catch (Exception e){
+             
+         }
     }
-
     private void DialogMessage() {
         try {
-            JOptionPane.showMessageDialog(rootPane, "sukses");
+            JOptionPane.showMessageDialog(rootPane, "SUKSES");
         } catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "gagal");
+            JOptionPane.showMessageDialog(rootPane, "GAGAL");
         }
     }
 }
