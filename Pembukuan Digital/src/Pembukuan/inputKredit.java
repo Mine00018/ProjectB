@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class inputKredit extends javax.swing.JFrame {
     DefaultTableModel model ;
-    String id;
+    String id;//omegalul
     /**
      * Creates new form inputKredit
      */
