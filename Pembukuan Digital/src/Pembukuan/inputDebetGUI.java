@@ -9,7 +9,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,16 +22,21 @@ import javax.swing.table.DefaultTableModel;
  * @author Claus
  */
 public class inputDebetGUI extends javax.swing.JFrame {
-    DefaultTableModel model; 
     Connection con=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
+    DefaultTableModel model; 
+    String id;
     /**
      * Creates new form inputDebetGUI
      */
     public inputDebetGUI() {
         initComponents();
         comboboxItem();
+        String [] judul = {"No Pemasukan", "Tanggal", "Jenis Pemasukan", "Jenis Item", "Netto (Kg)","Nama Pemasukan","Jumlah Pemasukan (Rp)"};
+        model = new DefaultTableModel (judul,0);
+        jTable2.setModel(model);
+        tampilkan ();
     }
 
     /**
@@ -121,7 +130,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
                 tombolTambahActionPerformed(evt);
             }
         });
-        getContentPane().add(tombolTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 199, -1, -1));
+        getContentPane().add(tombolTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         tambahItem.setText("Tambah Jenis Item");
         tambahItem.addActionListener(new java.awt.event.ActionListener() {
@@ -136,10 +145,20 @@ public class inputDebetGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, -1, -1));
 
         tombolUpdate.setText("Update");
-        getContentPane().add(tombolUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 199, -1, -1));
+        tombolUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolUpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tombolUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
         tombolHapus.setText("Hapus");
-        getContentPane().add(tombolHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 199, 73, -1));
+        tombolHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolHapusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tombolHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 73, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,6 +172,10 @@ public class inputDebetGUI extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(5).setHeaderValue("Title 6");
+            jTable2.getColumnModel().getColumn(6).setHeaderValue("Title 7");
+        }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 268, 590, 210));
 
@@ -252,10 +275,16 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tambahItemActionPerformed
 
     private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
-      SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
-      String tanggal = formatTgl.format(inputTGL.getDate());
-      DialogMessage();
+      insertDB();
     }//GEN-LAST:event_tombolTambahActionPerformed
+
+    private void tombolUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolUpdateActionPerformed
+       updateDB();
+    }//GEN-LAST:event_tombolUpdateActionPerformed
+
+    private void tombolHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolHapusActionPerformed
+        deleteDB();
+    }//GEN-LAST:event_tombolHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,19 +372,59 @@ public class inputDebetGUI extends javax.swing.JFrame {
     
     private void insertDB(){
          try {            
+          SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+          String tanggal = formatTgl.format(inputTGL.getDate());
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-           String sql = "select * from daftarBarang";
-           pst = con.prepareStatement(sql);
-           rs = pst.executeQuery(); 
+           con.createStatement().executeUpdate("INSERT INTO pemasukan"
+            +"(tanggal,Nama_Pemasukan,Netto_Pemasukan,Jumlah_Pemasukan,Jenis_Item,Jenis_Pemasukan)"
+            + "VALUES ('"+tanggal+"','"+inputNamaPemasukan.getText()+"','"+inputNetto.getText()+"','"+inputNominal.getText()+"','"+inputItem.getSelectedItem().toString()+"','"+inputJenisPemasukan.getSelectedItem().toString()+"')");
+         JOptionPane.showMessageDialog(null, "Tambah Berhasil!");
          } catch (Exception e){
-             
+             JOptionPane.showMessageDialog(null, "Tambah Gagal!");
          }
     }
-    private void DialogMessage() {
+    
+    private void updateDB(){
         try {
-            JOptionPane.showMessageDialog(rootPane, "SUKSES");
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "GAGAL");
+          SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+          String tanggal = formatTgl.format(inputTGL.getDate());
+          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+          con.createStatement().executeUpdate("UPDATE pemasukan SET tanggal='"+tanggal+"',Nama_Pemasukan='"+inputNamaPemasukan.getText()+"',Jumlah_Pemasukan='"+inputNominal.getText()+"',Jenis_Item='"+inputItem.getSelectedItem().toString()+"',Jenis_Pemasukan='"+inputJenisPemasukan.getSelectedItem().toString()+"' where No_Pemasukan='"+id+"'");
+          JOptionPane.showMessageDialog(null, "Ganti Berhasil!");    
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ganti Gagal");
         }
     }
+    
+    private void deleteDB(){
+        try {
+          SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+          String tanggal = formatTgl.format(inputTGL.getDate());
+          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+          con.createStatement().executeUpdate("DELETE FROM pemasukan where No_Pemasukan='"+id+"'");
+          JOptionPane.showMessageDialog(null, "Delete Berhasil");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Delete Gagal!");
+        }
+        
+    }
+    
+       private void tampilkan() {
+        int row =jTable2.getRowCount ();
+        for (int a=0; a<row;a++){
+            model.removeRow (0);
+        
+        }
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            ResultSet rs = cn.createStatement ().executeQuery(" select * from pemasukan ");
+            while (rs.next()){
+               String data[]={rs.getString(1),rs.getString(2),rs.getString(7),rs.getString(6),rs.getString(4),rs.getString(3),rs.getString(5)};
+               model.addRow (data);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+  
 }
