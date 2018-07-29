@@ -42,7 +42,6 @@ public class inputKredit extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -98,6 +97,7 @@ public class inputKredit extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 443));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,6 +110,7 @@ public class inputKredit extends javax.swing.JFrame {
                 "No", "No_Nota", "Tanggal", "Nama_Penjual", "Jenis_Barang", "Bruto", "Tara_Colly", "PTGKadarAir", "PTGLain", "Netto", "Harga_Satuan", "Harga_Total", "Overhead", "Lain-Lain", "Jumlah"
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -120,18 +121,24 @@ public class inputKredit extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 376, 1080, 271));
+        getContentPane().add(inputCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 295, 161, -1));
+
         buttonCari.setText("Cari");
         buttonCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCariActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 294, -1, -1));
 
         jLabel16.setText("Cari Berdasarkan Nama");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 298, -1, -1));
 
         judul.setFont(new java.awt.Font("Myriad Pro Light", 1, 18)); // NOI18N
         judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         judul.setText("Input Pengeluaran");
+        getContentPane().add(judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 30));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -151,10 +158,10 @@ public class inputKredit extends javax.swing.JFrame {
         jLabel10.setText("Sisa Netto (Kg)");
 
         input6.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 input6InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         input6.addActionListener(new java.awt.event.ActionListener() {
@@ -172,10 +179,10 @@ public class inputKredit extends javax.swing.JFrame {
         });
 
         input5.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 input5InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         input5.addActionListener(new java.awt.event.ActionListener() {
@@ -196,10 +203,10 @@ public class inputKredit extends javax.swing.JFrame {
         });
 
         input7.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 input7InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         input7.addActionListener(new java.awt.event.ActionListener() {
@@ -217,10 +224,10 @@ public class inputKredit extends javax.swing.JFrame {
         });
 
         input8.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 input8InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         input8.addActionListener(new java.awt.event.ActionListener() {
@@ -378,6 +385,8 @@ public class inputKredit extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -511,12 +520,15 @@ public class inputKredit extends javax.swing.JFrame {
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Reset Tabel");
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 50, -1, -1));
+
+        jButton1.setText("Reset ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(738, 328, -1, -1));
 
         actionButton.setText("Action");
 
@@ -574,53 +586,6 @@ public class inputKredit extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel16)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonCari)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
-                            .addComponent(buttonCari))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
 
         pack();
         setLocationRelativeTo(null);
@@ -840,6 +805,7 @@ public class inputKredit extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         tampilkan();
+        reset();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -984,8 +950,7 @@ public class inputKredit extends javax.swing.JFrame {
     private void tampilkan() {
         int row =jTable1.getRowCount ();
         for (int a=0; a<row;a++){
-            model.removeRow (0);
-        
+            model.removeRow (0);        
         }
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
@@ -1012,9 +977,9 @@ public class inputKredit extends javax.swing.JFrame {
               String name = rs.getString("barang");
               input4.addItem(name);
            }
-   } catch (Exception e){
+         } catch (Exception e){
         
-    }
+        }
     }
 
     private void reset() {
