@@ -5,12 +5,12 @@
  */
 package Pembukuan;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -365,7 +365,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
               String name = rs.getString("barang");
               inputItem.addItem(name);
            }
-        } catch (Exception e){
+        } catch (SQLException e){
              JOptionPane.showMessageDialog(null, e);
             }
     }
@@ -379,7 +379,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
             +"(tanggal,Nama_Pemasukan,Netto_Pemasukan,Jumlah_Pemasukan,Jenis_Item,Jenis_Pemasukan)"
             + "VALUES ('"+tanggal+"','"+inputNamaPemasukan.getText()+"','"+inputNetto.getText()+"','"+inputNominal.getText()+"','"+inputItem.getSelectedItem().toString()+"','"+inputJenisPemasukan.getSelectedItem().toString()+"')");
          JOptionPane.showMessageDialog(null, "Tambah Berhasil!");
-         } catch (Exception e){
+         } catch (HeadlessException | SQLException e){
              JOptionPane.showMessageDialog(null, "Tambah Gagal!");
          }
     }
@@ -391,7 +391,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
           con.createStatement().executeUpdate("UPDATE pemasukan SET tanggal='"+tanggal+"',Nama_Pemasukan='"+inputNamaPemasukan.getText()+"',Jumlah_Pemasukan='"+inputNominal.getText()+"',Jenis_Item='"+inputItem.getSelectedItem().toString()+"',Jenis_Pemasukan='"+inputJenisPemasukan.getSelectedItem().toString()+"' where No_Pemasukan='"+id+"'");
           JOptionPane.showMessageDialog(null, "Ganti Berhasil!");    
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
         JOptionPane.showMessageDialog(null, "Ganti Gagal");
         }
     }
@@ -403,7 +403,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
           con.createStatement().executeUpdate("DELETE FROM pemasukan where No_Pemasukan='"+id+"'");
           JOptionPane.showMessageDialog(null, "Delete Berhasil");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Delete Gagal!");
         }
         
@@ -413,13 +413,12 @@ public class inputDebetGUI extends javax.swing.JFrame {
         int row =jTable2.getRowCount ();
         for (int a=0; a<row;a++){
             model.removeRow (0);
-        
         }
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-            ResultSet rs = cn.createStatement ().executeQuery(" select * from pemasukan ");
-            while (rs.next()){
-               String data[]={rs.getString(1),rs.getString(2),rs.getString(7),rs.getString(6),rs.getString(4),rs.getString(3),rs.getString(5)};
+            ResultSet rSet = cn.createStatement ().executeQuery(" select * from pemasukan ");
+            while (rSet.next()){
+               String data[]={rSet.getString(1),rSet.getString(2),rSet.getString(7),rSet.getString(6),rSet.getString(4),rSet.getString(3),rSet.getString(5)};
                model.addRow (data);
             }
         } catch (SQLException ex) {
