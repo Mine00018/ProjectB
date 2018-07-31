@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="8">
+        <file>
+            <url>src/Pembukuan/inputDebetGUI.java</url>
+            <bookmark id="3">
+                <name/>
+                <line>373</line>
+                <key/>
+            </bookmark>
+            <bookmark id="7">
+                <name/>
+                <line>401</line>
+                <key/>
+            </bookmark>
+            <bookmark id="8">
+                <name/>
+                <line>442</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/Pembukuan/inputKredit.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>743</line>
+                <key/>
+            </bookmark>
+            <bookmark id="4">
+                <name/>
+                <line>774</line>
+                <key/>
+            </bookmark>
+            <bookmark id="5">
+                <name/>
+                <line>818</line>
+                <key/>
+            </bookmark>
+            <bookmark id="6">
+                <name/>
+                <line>854</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/inputSaldoAwalGUI.java</file>
             <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/inputKredit.java</file>
-            <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/debetKreditGUI.java</file>
-            <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/optionGUI.java</file>
-            <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/stokBarangGUI.java</file>
-<<<<<<< HEAD
-=======
-            <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/TambahJenisItemGUI.java</file>
->>>>>>> origin/Hendra
+            <file>file:/C:/Users/Claus/Documents/GitHub/ProjectB/Pembukuan%20Digital/src/Pembukuan/inputDebetGUI.java</file>
         </group>
     </open-files>
 </project-private>
