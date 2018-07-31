@@ -118,7 +118,6 @@ public class TambahJenisItemGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_inputItemActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new inputDebetGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

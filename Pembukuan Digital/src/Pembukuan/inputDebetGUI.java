@@ -85,7 +85,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Myriad Pro Light", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Input Debet");
+        jLabel1.setText("Input Pemasukan");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 30));
 
         jLabel2.setText("2. Jenis Masuk");
@@ -259,7 +259,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
 
     private void tambahItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemActionPerformed
         new TambahJenisItemGUI().setVisible(true);
-        this.dispose();
+       
     }//GEN-LAST:event_tambahItemActionPerformed
 
     private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
