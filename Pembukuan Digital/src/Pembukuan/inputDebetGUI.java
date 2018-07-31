@@ -1,12 +1,12 @@
 package Pembukuan;
 
-import static com.sun.webkit.perf.WCFontPerfLogger.reset;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +25,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
     public inputDebetGUI() {
         initComponents();
         comboboxItem();
-        String [] judul = {"No Pemasukan", "Tanggal", "Jenis Pemasukan", "Jenis Item", "Netto (Kg)","Nama Pemasukan","Jumlah Pemasukan (Rp)"};
+        String [] judul = {"No_ID", "Tanggal", "Nama Pemasukan", "Netto (Kg)", "Jumlah Masuk","Jenis Masuk","Jenis Barang"};
         model = new DefaultTableModel (judul,0);
         jTable2.setModel(model);
         tampilkan ();
@@ -43,11 +43,11 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        inputItem = new javax.swing.JComboBox<>();
-        inputJenisPemasukan = new javax.swing.JComboBox<>();
+        inputBarang = new javax.swing.JComboBox<>();
+        inputMasuk = new javax.swing.JComboBox<>();
         inputNetto = new javax.swing.JTextField();
-        inputNamaPemasukan = new javax.swing.JTextField();
-        inputNominal = new javax.swing.JTextField();
+        inputNama = new javax.swing.JTextField();
+        inputJumlah = new javax.swing.JTextField();
         tombolTambah = new javax.swing.JButton();
         tambahItem = new javax.swing.JButton();
         inputTGL = new com.toedter.calendar.JDateChooser();
@@ -88,10 +88,10 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jLabel1.setText("Input Debet");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 30));
 
-        jLabel2.setText("2. Jenis Pemasukan");
+        jLabel2.setText("2. Jenis Masuk");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, 181, -1));
 
-        jLabel10.setText("3. Jenis Item");
+        jLabel10.setText("3. Jenis Barang");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, 181, -1));
 
         jLabel4.setText("4. Netto (KG)");
@@ -100,14 +100,16 @@ public class inputDebetGUI extends javax.swing.JFrame {
         jLabel5.setText("5. Nama Pemasukan");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 85, 181, -1));
 
-        jLabel6.setText("6. Jumlah Nominal (Rp)");
+        jLabel6.setText("6. Jumlah Masuk (Rp)");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 143, 181, -1));
 
-        getContentPane().add(inputItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, 181, -1));
-        getContentPane().add(inputJenisPemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 114, 181, -1));
+        getContentPane().add(inputBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, 181, -1));
+
+        inputMasuk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko", "Kapal" }));
+        getContentPane().add(inputMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 114, 181, -1));
         getContentPane().add(inputNetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 54, 181, -1));
-        getContentPane().add(inputNamaPemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 112, 181, -1));
-        getContentPane().add(inputNominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 163, 181, -1));
+        getContentPane().add(inputNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 112, 181, -1));
+        getContentPane().add(inputJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 163, 181, -1));
 
         tombolTambah.setText("Tambah");
         tombolTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -156,11 +158,12 @@ public class inputDebetGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(5).setHeaderValue("Title 6");
-            jTable2.getColumnModel().getColumn(6).setHeaderValue("Title 7");
-        }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 268, 590, 210));
 
@@ -260,16 +263,40 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tambahItemActionPerformed
 
     private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
-      insertDB();
+        insertDB();
     }//GEN-LAST:event_tombolTambahActionPerformed
 
     private void tombolUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolUpdateActionPerformed
-       updateDB();
+        updateDB();
     }//GEN-LAST:event_tombolUpdateActionPerformed
 
     private void tombolHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolHapusActionPerformed
         deleteDB();
     }//GEN-LAST:event_tombolHapusActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+        String tanggal;
+        java.util.Date tanggals=new java.util.Date();       
+        int i= jTable2.getSelectedRow();
+        if (i>-1){
+            id=model.getValueAt(i,0).toString();
+        
+            tanggal= model.getValueAt(i,1).toString();//isi tabel ke jcalendar
+            try {
+                tanggals= formatTgl.parse(tanggal);
+            } catch (ParseException ex) {
+                Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                java.sql.Date tanggald=new java.sql.Date(tanggals.getTime());
+                inputTGL.setDate(tanggald);
+                inputMasuk.setSelectedItem(model.getValueAt(i, 5));
+                inputBarang.setSelectedItem(model.getValueAt(i, 6));
+                inputNetto.setText(model.getValueAt(i,3).toString());
+                inputNama.setText(model.getValueAt(i,2).toString());
+                inputJumlah.setText(model.getValueAt(i,4).toString());
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -309,12 +336,12 @@ public class inputDebetGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu actionButton;
     private javax.swing.JMenuItem hutangButton;
+    private javax.swing.JComboBox<String> inputBarang;
     private javax.swing.JMenuItem inputButton;
-    private javax.swing.JComboBox<String> inputItem;
-    private javax.swing.JComboBox<String> inputJenisPemasukan;
-    private javax.swing.JTextField inputNamaPemasukan;
+    private javax.swing.JTextField inputJumlah;
+    private javax.swing.JComboBox<String> inputMasuk;
+    private javax.swing.JTextField inputNama;
     private javax.swing.JTextField inputNetto;
-    private javax.swing.JTextField inputNominal;
     private com.toedter.calendar.JDateChooser inputTGL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -348,7 +375,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
            while(rs.next())
            {
               String name = rs.getString("barang");
-              inputItem.addItem(name);
+              inputBarang.addItem(name);
            }
         } catch (SQLException e){
              JOptionPane.showMessageDialog(null, e);
@@ -356,18 +383,20 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }
     
     private void insertDB(){
-         try {            
-          SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
-          String tanggal = formatTgl.format(inputTGL.getDate());
-          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-           con.createStatement().executeUpdate("INSERT INTO pemasukan"
-            +"(tanggal,Nama_Pemasukan,Netto_Pemasukan,Jumlah_Pemasukan,Jenis_Item,Jenis_Pemasukan)"
-            + "VALUES ('"+tanggal+"','"+inputNamaPemasukan.getText()+"','"+inputNetto.getText()+"','"+inputNominal.getText()+"','"+inputItem.getSelectedItem().toString()+"','"+inputJenisPemasukan.getSelectedItem().toString()+"')");
-         JOptionPane.showMessageDialog(null, "Tambah Berhasil!");
-         tampilkan();
-         } catch (HeadlessException | SQLException e){
-             JOptionPane.showMessageDialog(null, "Tambah Gagal!");
-         }
+        try {            
+            SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = formatTgl.format(inputTGL.getDate());
+          
+            con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            con.createStatement().executeUpdate("INSERT INTO pemasukan"
+            +"(Tanggal,Jenis_Masuk,Jenis_Barang,Netto,Nama,Jumlah)"
+            + "VALUES ('"+tanggal+"','"+inputMasuk.getSelectedItem().toString()+"','"+inputBarang.getSelectedItem().toString()
+            +"','"+inputNetto.getText()+"','"+inputNama.getText()+"','"+inputJumlah.getText()+"')");
+            JOptionPane.showMessageDialog(null, "Tambah Berhasil!");
+            tampilkan();
+        } catch (HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null, "Tambah Gagal!");
+        }
          reset();
     }
     
@@ -376,11 +405,13 @@ public class inputDebetGUI extends javax.swing.JFrame {
           SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
           String tanggal = formatTgl.format(inputTGL.getDate());
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-          con.createStatement().executeUpdate("UPDATE pemasukan SET tanggal='"+tanggal+"',Nama_Pemasukan='"+inputNamaPemasukan.getText()+"',Jumlah_Pemasukan='"+inputNominal.getText()+"',Jenis_Item='"+inputItem.getSelectedItem().toString()+"',Jenis_Pemasukan='"+inputJenisPemasukan.getSelectedItem().toString()+"' where No_Pemasukan='"+id+"'");
-          JOptionPane.showMessageDialog(null, "Ganti Berhasil!");    
+          con.createStatement().executeUpdate("UPDATE pemasukan SET Tanggal='"+tanggal+"',Jenis_Masuk='"+inputMasuk.getSelectedItem().toString()+"',Jenis_Barang='"+inputBarang.getSelectedItem().toString()+"',Netto='"+inputNetto.getText()+"',Nama='"+inputNama.getText()+"',Jumlah='"+inputJumlah.getText()+"' where No_ID='"+id+"'");
+          JOptionPane.showMessageDialog(null, "Ganti Berhasil!");
+          tampilkan();
         } catch (HeadlessException | SQLException e) {
         JOptionPane.showMessageDialog(null, "Ganti Gagal");
         }
+        reset();
     }
     
     private void deleteDB(){
@@ -388,14 +419,15 @@ public class inputDebetGUI extends javax.swing.JFrame {
           SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
           String tanggal = formatTgl.format(inputTGL.getDate());
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-          con.createStatement().executeUpdate("DELETE FROM pemasukan where No_Pemasukan='"+id+"'");
+          con.createStatement().executeUpdate("DELETE FROM pemasukan where No_ID='"+id+"'");
           JOptionPane.showMessageDialog(null, "Delete Berhasil");
+          tampilkan();
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Delete Gagal!");
         }
+        reset();
         
     }
-    
        private void tampilkan() {
         int row =jTable2.getRowCount ();
         for (int a=0; a<row;a++){
@@ -405,12 +437,18 @@ public class inputDebetGUI extends javax.swing.JFrame {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
             ResultSet rSet = cn.createStatement ().executeQuery(" select * from pemasukan ");
             while (rSet.next()){
-               String data[]={rSet.getString(1),rSet.getString(2),rSet.getString(7),rSet.getString(6),rSet.getString(4),rSet.getString(3),rSet.getString(5)};
+               String data[]={rSet.getString(1),rSet.getString(2),rSet.getString(3),rSet.getString(4),rSet.getString(5),rSet.getString(6),rSet.getString(7)};
                model.addRow (data);
             }
         } catch (SQLException ex) {
             Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+       
+       private void reset() {
+           inputNetto.setText("");
+           inputNama.setText("");
+           inputJumlah.setText("");
+       }
   
 }
