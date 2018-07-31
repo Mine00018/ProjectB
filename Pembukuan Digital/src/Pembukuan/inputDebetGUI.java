@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -20,7 +21,8 @@ public class inputDebetGUI extends javax.swing.JFrame {
     PreparedStatement pst=null;
     ResultSet rs=null;
     DefaultTableModel model; 
-    String id;
+    String barang,baranglama,id;
+    float beratBarang,beratLama;
  
     public inputDebetGUI() {
         initComponents();
@@ -49,7 +51,6 @@ public class inputDebetGUI extends javax.swing.JFrame {
         inputNama = new javax.swing.JTextField();
         inputJumlah = new javax.swing.JTextField();
         tombolTambah = new javax.swing.JButton();
-        tambahItem = new javax.swing.JButton();
         inputTGL = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         tombolUpdate = new javax.swing.JButton();
@@ -118,14 +119,6 @@ public class inputDebetGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tombolTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
-
-        tambahItem.setText("Tambah Jenis Item");
-        tambahItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambahItemActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tambahItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 165, -1, -1));
         getContentPane().add(inputTGL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, 181, -1));
 
         jLabel7.setText("1. Tanggal");
@@ -257,10 +250,6 @@ public class inputDebetGUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
-    private void tambahItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemActionPerformed
-     //   new TambahJenisItemGUI().setVisible(true);       
-    }//GEN-LAST:event_tambahItemActionPerformed
-
     private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
         insertDB();
     }//GEN-LAST:event_tombolTambahActionPerformed
@@ -291,7 +280,9 @@ public class inputDebetGUI extends javax.swing.JFrame {
                 inputTGL.setDate(tanggald);
                 inputMasuk.setSelectedItem(model.getValueAt(i, 5));
                 inputBarang.setSelectedItem(model.getValueAt(i, 6));
+                baranglama=model.getValueAt(i,6).toString();
                 inputNetto.setText(model.getValueAt(i,3).toString());
+                beratLama=Float.parseFloat(model.getValueAt(i,3).toString());
                 inputNama.setText(model.getValueAt(i,2).toString());
                 inputJumlah.setText(model.getValueAt(i,4).toString());
         }
@@ -359,7 +350,6 @@ public class inputDebetGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem rekapButton;
     private javax.swing.JMenuItem stokButton;
-    private javax.swing.JButton tambahItem;
     private javax.swing.JButton tombolHapus;
     private javax.swing.JButton tombolTambah;
     private javax.swing.JButton tombolUpdate;
@@ -382,11 +372,21 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }
     
     private void insertDB(){
+        barang=inputBarang.getSelectedItem().toString();
         try {            
             SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
             String tanggal = formatTgl.format(inputTGL.getDate());
           
             con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+            while (srs.next()) {                 
+                 beratBarang = srs.getFloat("stok");                 
+             }     
+            beratBarang-=Float.parseFloat(inputNetto.getText());
+            con.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
+            
             con.createStatement().executeUpdate("INSERT INTO pemasukan"
             +"(Tanggal,Jenis_Masuk,Jenis_Barang,Netto,Nama,Jumlah)"
             + "VALUES ('"+tanggal+"','"+inputMasuk.getSelectedItem().toString()+"','"+inputBarang.getSelectedItem().toString()
@@ -400,10 +400,35 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }
     
     private void updateDB(){
+        barang=inputBarang.getSelectedItem().toString();
         try {
             SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
             String tanggal = formatTgl.format(inputTGL.getDate());
             con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            if(baranglama==barang){
+               ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+               while (srs.next()) {                 
+                    beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang             
+               }
+               beratBarang=beratBarang+beratLama-Float.parseFloat(inputNetto.getText());
+            }                
+            else{               
+                ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+baranglama+"'");
+                while (srs.next()) {                 
+                    beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang        
+                }
+                beratBarang+=beratLama;
+                con.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang= '"+baranglama+"'");
+                
+                srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+                while (srs.next()) {                 
+                    beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang             
+                }
+                beratBarang-=Float.parseFloat(inputNetto.getText());
+            }  
+            con.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
+            
             con.createStatement().executeUpdate("UPDATE pemasukan SET Tanggal='"+tanggal+"',Jenis_Masuk='"+inputMasuk.getSelectedItem().toString()
             +"',Jenis_Barang='"+inputBarang.getSelectedItem().toString()+"',Netto='"+inputNetto.getText()+"',Nama='"+inputNama.getText()
             +"',Jumlah='"+inputJumlah.getText()+"' where No_ID='"+id+"'");
@@ -416,10 +441,20 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }
     
     private void deleteDB(){
+        barang=inputBarang.getSelectedItem().toString();
         try {
           SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
           String tanggal = formatTgl.format(inputTGL.getDate());
           con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+          
+          Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+          ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+          while (srs.next()) {                 
+                 beratBarang = srs.getFloat("stok");                 
+          }     
+          beratBarang+=Float.parseFloat(inputNetto.getText());
+          con.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
+          
           con.createStatement().executeUpdate("DELETE FROM pemasukan where No_ID='"+id+"'");
           JOptionPane.showMessageDialog(null, "Delete Berhasil");
           tampilkan();

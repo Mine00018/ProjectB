@@ -759,7 +759,7 @@ public class inputKredit extends javax.swing.JFrame {
                  beratBarang = srs.getFloat("stok");                 
              }     
             beratBarang+=Float.parseFloat(input9.getText());
-            JOptionPane.showMessageDialog(rootPane, beratBarang);
+            
             cn.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
             tampilkan();
         } catch (SQLException ex) {
@@ -769,7 +769,7 @@ public class inputKredit extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTambahActionPerformed
 
     private void tambahItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemButtonActionPerformed
-  //      new TambahJenisItemGUI().setVisible(true);
+            new TambahJenisItemGUI().setVisible(true);
     }//GEN-LAST:event_tambahItemButtonActionPerformed
 
     private void buttonGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGantiActionPerformed
@@ -801,9 +801,9 @@ public class inputKredit extends javax.swing.JFrame {
                     beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang             
                 }
                 beratBarang+=Float.parseFloat(input9.getText());
-            }                
-                
+            }  
             cn.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
+            
             cn.createStatement().executeUpdate("update pengeluaran set No_Nota='"+input1.getText()+"', Tanggal='"+tanggal
                     +"', Nama_Penjual='"+input3.getText()+"', Jenis_Barang='"+barang+"', Bruto='"+input5.getText()
                     +"', Tara_Colly='"+input6.getText()+"', Potongan_KadangAir= '"+input7.getText()+"', Potongan_Lain= '"+input8.getText()
@@ -854,12 +854,21 @@ public class inputKredit extends javax.swing.JFrame {
 
     private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
         try {
+            
             barang=input4.getSelectedItem().toString();
             SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
             String tanggal = formatTgl.format(input2.getDate());
             
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-            beratBarang-=+Float.parseFloat(input9.getText());
+            Statement stmt = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+            while (srs.next()) {                 
+                 beratBarang = srs.getFloat("stok");                 
+             }     
+            beratBarang-=Float.parseFloat(input9.getText());
+            
+            cn.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
+            
             
             cn.createStatement().executeUpdate("delete from pengeluaran where No_Pengeluaran='"+id+"'");   
             tampilkan();
