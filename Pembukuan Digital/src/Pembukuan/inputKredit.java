@@ -751,7 +751,7 @@ public class inputKredit extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTambahActionPerformed
 
     private void tambahItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemButtonActionPerformed
-        new TambahJenisItemGUI().setVisible(true);
+  //      new TambahJenisItemGUI().setVisible(true);
     }//GEN-LAST:event_tambahItemButtonActionPerformed
 
     private void buttonGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGantiActionPerformed

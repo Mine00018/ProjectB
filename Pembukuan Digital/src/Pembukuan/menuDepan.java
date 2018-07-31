@@ -98,7 +98,8 @@ public class menuDepan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(stokButton)
                 .addGap(18, 18, 18)
-                .addComponent(rekapButton))
+                .addComponent(rekapButton)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");

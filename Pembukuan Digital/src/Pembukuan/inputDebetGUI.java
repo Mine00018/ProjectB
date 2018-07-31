@@ -258,8 +258,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void tambahItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemActionPerformed
-        new TambahJenisItemGUI().setVisible(true);
-       
+     //   new TambahJenisItemGUI().setVisible(true);       
     }//GEN-LAST:event_tambahItemActionPerformed
 
     private void tombolTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolTambahActionPerformed
@@ -402,14 +401,16 @@ public class inputDebetGUI extends javax.swing.JFrame {
     
     private void updateDB(){
         try {
-          SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
-          String tanggal = formatTgl.format(inputTGL.getDate());
-          con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-          con.createStatement().executeUpdate("UPDATE pemasukan SET Tanggal='"+tanggal+"',Jenis_Masuk='"+inputMasuk.getSelectedItem().toString()+"',Jenis_Barang='"+inputBarang.getSelectedItem().toString()+"',Netto='"+inputNetto.getText()+"',Nama='"+inputNama.getText()+"',Jumlah='"+inputJumlah.getText()+"' where No_ID='"+id+"'");
-          JOptionPane.showMessageDialog(null, "Ganti Berhasil!");
-          tampilkan();
+            SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = formatTgl.format(inputTGL.getDate());
+            con= DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            con.createStatement().executeUpdate("UPDATE pemasukan SET Tanggal='"+tanggal+"',Jenis_Masuk='"+inputMasuk.getSelectedItem().toString()
+            +"',Jenis_Barang='"+inputBarang.getSelectedItem().toString()+"',Netto='"+inputNetto.getText()+"',Nama='"+inputNama.getText()
+            +"',Jumlah='"+inputJumlah.getText()+"' where No_ID='"+id+"'");
+            JOptionPane.showMessageDialog(null, "Ganti Berhasil!");
+            tampilkan();
         } catch (HeadlessException | SQLException e) {
-        JOptionPane.showMessageDialog(null, "Ganti Gagal");
+            JOptionPane.showMessageDialog(null, "Ganti Gagal");
         }
         reset();
     }
