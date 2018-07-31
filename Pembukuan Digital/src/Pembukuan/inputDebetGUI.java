@@ -25,7 +25,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
     public inputDebetGUI() {
         initComponents();
         comboboxItem();
-        String [] judul = {"No_ID", "Tanggal", "Nama Pemasukan", "Netto (Kg)", "Jumlah Masuk","Jenis Masuk","Jenis Barang"};
+        String [] judul = {"No", "Tanggal", "Nama Pemasukan", "Netto (Kg)", "Jumlah Masuk","Jenis Masuk","Jenis Barang"};
         model = new DefaultTableModel (judul,0);
         jTable2.setModel(model);
         tampilkan ();
@@ -155,7 +155,7 @@ public class inputDebetGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "No", "Tanggal", "Jenis Masuk", "Jenis Barang", "Netto (Kg)", "Nama", "Jumlah Masuk"
             }
         ));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
