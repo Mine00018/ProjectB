@@ -6,12 +6,13 @@
 package Pembukuan;
 
 
-import com.mysql.jdbc.Driver;
+//import com.mysql.jdbc.Driver;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class inputKredit extends javax.swing.JFrame {
     DefaultTableModel model ;
-    String id;//omegalul
+    String barang,baranglama,id;//variabel penyimpanan sementara
+    float beratBarang,beratLama;
+    
     /**
      * Creates new form inputKredit
      */
@@ -109,6 +112,7 @@ public class inputKredit extends javax.swing.JFrame {
                 "No", "No_Nota", "Tanggal", "Nama_Penjual", "Jenis_Barang", "Bruto", "Tara_Colly", "PTGKadarAir", "PTGLain", "Netto", "Harga_Satuan", "Harga_Total", "Overhead", "Lain-Lain", "Jumlah"
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -510,7 +514,7 @@ public class inputKredit extends javax.swing.JFrame {
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Reset Tabel");
+        jButton1.setText("Reset ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -578,27 +582,26 @@ public class inputKredit extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel16)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonCari)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(4, 4, 4)
+                                .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(buttonCari))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(275, 275, 275)
+                                .addComponent(jButton1)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -610,15 +613,18 @@ public class inputKredit extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(inputCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(buttonCari))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(11, 11, 11)
                         .addComponent(jButton1)))
                 .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -736,13 +742,25 @@ public class inputKredit extends javax.swing.JFrame {
 
     private void buttonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahActionPerformed
         try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            barang=input4.getSelectedItem().toString();
             SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
             String tanggal = formatTgl.format(input2.getDate());
+            Statement stmt = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-            cn.createStatement().executeUpdate("INSERT INTO pengeluaran (No_Nota,Tanggal,Nama_Penjual,Jenis_Barang,Bruto,Tara_Colly,Potongan_KadangAir,Potongan_Lain,Netto,Harga_Satuan,Harga_Total,Overhead,PengeluaranLain,Jumlah) VALUES"
-                    +"('"+input1.getText()+"','"+tanggal+"','"+input3.getText()+"','"+input4.getSelectedItem().toString()+"','"+input5.getText()+"','"+input6.getText()+"','"+input7.getText()+"','"+input8.getText()+"','"+input9.getText()+"','"+input10.getText()+"','"+input11.getText()+"','"+input12.getText()+"','"+input13.getText()+"','"+input14.getText()+"')");
-                      
+            cn.createStatement().executeUpdate("INSERT INTO pengeluaran (No_Nota,Tanggal,Nama_Penjual,Jenis_Barang,Bruto,Tara_Colly,Potongan_KadangAir,"
+                    + "Potongan_Lain,Netto,Harga_Satuan,Harga_Total,Overhead,PengeluaranLain,Jumlah) VALUES"
+                    +"('"+input1.getText()+"','"+tanggal+"','"+input3.getText()+"','"+barang+"','"+input5.getText()+"','"+input6.getText()
+                    +"','"+input7.getText()+"','"+input8.getText()+"','"+input9.getText()+"','"+input10.getText()+"','"+input11.getText()
+                    +"','"+input12.getText()+"','"+input13.getText()+"','"+input14.getText()+"')");
+            
+            ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+            while (srs.next()) {                 
+                 beratBarang = srs.getFloat("stok");                 
+             }     
+            beratBarang+=Float.parseFloat(input9.getText());
+            JOptionPane.showMessageDialog(rootPane, beratBarang);
+            cn.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
             tampilkan();
         } catch (SQLException ex) {
             Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
@@ -756,13 +774,41 @@ public class inputKredit extends javax.swing.JFrame {
 
     private void buttonGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGantiActionPerformed
        try {
+            barang=input4.getSelectedItem().toString();
             SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
             String tanggal = formatTgl.format(input2.getDate());
-            
+                        
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
-            
-            cn.createStatement().executeUpdate("update pengeluaran set No_Nota='"+input1.getText()+"', Tanggal='"+tanggal+"', Nama_Penjual='"+input3.getText()+"', Jenis_Barang='"+input4.getSelectedItem().toString()+"', Bruto='"+input5.getText()+"', Tara_Colly='"+input6.getText()+"', Potongan_KadangAir= '"+input7.getText()+"', Potongan_Lain= '"+input8.getText()+"', Netto='"+input9.getText()+"', Harga_Satuan = '"+input10.getText()+"', Harga_Total= '"+input11.getText()+"', Overhead='"+input12.getText()+"', PengeluaranLain = '"+input13.getText()+"', Jumlah= '"+input14.getText()+"' where No_Pengeluaran='"+id+"'");
-                      
+            Statement stmt = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                           
+            if(baranglama==barang){
+               ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+               while (srs.next()) {                 
+                    beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang             
+               }
+               beratBarang=beratBarang-beratLama+Float.parseFloat(input9.getText());
+            }                
+            else{               
+                ResultSet srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+baranglama+"'");
+                while (srs.next()) {                 
+                    beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang        
+                }
+                beratBarang-=beratLama;
+                cn.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang= '"+baranglama+"'");
+                
+                srs = stmt.executeQuery("SELECT stok FROM daftarbarang where barang='"+barang+"'");
+                while (srs.next()) {                 
+                    beratBarang = srs.getFloat("stok");    //ambil data dari tabel daftar barang             
+                }
+                beratBarang+=Float.parseFloat(input9.getText());
+            }                
+                
+            cn.createStatement().executeUpdate("Update daftarbarang set stok='"+beratBarang+"' where barang='"+barang+"'");
+            cn.createStatement().executeUpdate("update pengeluaran set No_Nota='"+input1.getText()+"', Tanggal='"+tanggal
+                    +"', Nama_Penjual='"+input3.getText()+"', Jenis_Barang='"+barang+"', Bruto='"+input5.getText()
+                    +"', Tara_Colly='"+input6.getText()+"', Potongan_KadangAir= '"+input7.getText()+"', Potongan_Lain= '"+input8.getText()
+                    +"', Netto='"+input9.getText()+"', Harga_Satuan = '"+input10.getText()+"', Harga_Total= '"+input11.getText()
+                    +"', Overhead='"+input12.getText()+"', PengeluaranLain = '"+input13.getText()+"', Jumlah= '"+input14.getText()+"' where No_Pengeluaran='"+id+"'");        
             tampilkan();
         } catch (SQLException ex) {
             Logger.getLogger(inputKredit.class.getName()).log(Level.SEVERE, null, ex);
@@ -790,10 +836,12 @@ public class inputKredit extends javax.swing.JFrame {
             
             input3.setText(model.getValueAt(i,3).toString());
             input4.setSelectedItem(model.getValueAt(i,4));
+            baranglama=model.getValueAt(i,4).toString();
             input5.setText(model.getValueAt(i,5).toString());
             input6.setText(model.getValueAt(i,6).toString());
             input7.setText(model.getValueAt(i,7).toString());
-            input8.setText(model.getValueAt(i,8).toString());
+            input8.setText(model.getValueAt(i,8).toString());            
+            beratLama=Float.parseFloat(model.getValueAt(i,9).toString());
             input9.setText(model.getValueAt(i,9).toString());
             input10.setText(model.getValueAt(i,10).toString());
             input11.setText(model.getValueAt(i,11).toString());
@@ -806,10 +854,12 @@ public class inputKredit extends javax.swing.JFrame {
 
     private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
         try {
+            barang=input4.getSelectedItem().toString();
             SimpleDateFormat formatTgl = new SimpleDateFormat("yyyy-MM-dd");
             String tanggal = formatTgl.format(input2.getDate());
             
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
+            beratBarang-=+Float.parseFloat(input9.getText());
             
             cn.createStatement().executeUpdate("delete from pengeluaran where No_Pengeluaran='"+id+"'");   
             tampilkan();
@@ -839,6 +889,7 @@ public class inputKredit extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         tampilkan();
+        reset();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -983,8 +1034,7 @@ public class inputKredit extends javax.swing.JFrame {
     private void tampilkan() {
         int row =jTable1.getRowCount ();
         for (int a=0; a<row;a++){
-            model.removeRow (0);
-        
+            model.removeRow (0);        
         }
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pembukuan_toko99", "root", "");
@@ -1011,9 +1061,9 @@ public class inputKredit extends javax.swing.JFrame {
               String name = rs.getString("barang");
               input4.addItem(name);
            }
-   } catch (Exception e){
+         } catch (Exception e){
         
-    }
+        }
     }
 
     private void reset() {
