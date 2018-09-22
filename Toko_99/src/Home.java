@@ -60,8 +60,8 @@ public class Home extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
         jSpinner1 = new javax.swing.JSpinner();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        kontan1 = new javax.swing.JRadioButton();
+        hutang1 = new javax.swing.JRadioButton();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -81,8 +81,8 @@ public class Home extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        kontan2 = new javax.swing.JRadioButton();
+        piutang1 = new javax.swing.JRadioButton();
         jTextField10 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         hutang = new javax.swing.JPanel();
@@ -271,14 +271,19 @@ public class Home extends javax.swing.JFrame {
 
         jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton1.setText("Kontan");
-
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton2.setText("Hutang");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        kontan1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        kontan1.setText("Kontan");
+        kontan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                kontan1ActionPerformed(evt);
+            }
+        });
+
+        hutang1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        hutang1.setText("Hutang");
+        hutang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hutang1ActionPerformed(evt);
             }
         });
 
@@ -317,9 +322,9 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(pembelianLayout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(kontan1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
+                                .addComponent(hutang1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -358,8 +363,8 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(pembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
+                    .addComponent(kontan1)
+                    .addComponent(hutang1)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -408,11 +413,21 @@ public class Home extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("Bayar");
 
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton3.setText("Kontan");
+        kontan2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        kontan2.setText("Kontan");
+        kontan2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kontan2ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton4.setText("Piutang");
+        piutang1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        piutang1.setText("Piutang");
+        piutang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                piutang1ActionPerformed(evt);
+            }
+        });
 
         jTextField10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -447,9 +462,9 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField9))
                             .addGroup(penjualanLayout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
+                                .addComponent(kontan2)
                                 .addGap(40, 40, 40)
-                                .addComponent(jRadioButton4)
+                                .addComponent(piutang1)
                                 .addGap(40, 40, 40)
                                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton2))))
@@ -489,8 +504,8 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(penjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4)
+                    .addComponent(kontan2)
+                    .addComponent(piutang1)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -854,18 +869,16 @@ public class Home extends javax.swing.JFrame {
             gudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gudangLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(gudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(gudangLayout.createSequentialGroup()
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton15)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(gudangLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel25)
+                .addGroup(gudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(gudangLayout.createSequentialGroup()
+                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton16)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton15)))
+                    .addComponent(jLabel25))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gudangLayout.setVerticalGroup(
@@ -1214,9 +1227,9 @@ public class Home extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutbuttonActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void hutang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hutang1ActionPerformed
+       kontan1.setSelected(false);
+    }//GEN-LAST:event_hutang1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -1229,6 +1242,18 @@ public class Home extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void kontan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontan1ActionPerformed
+        hutang1.setSelected(false);
+    }//GEN-LAST:event_kontan1ActionPerformed
+
+    private void kontan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontan2ActionPerformed
+        piutang1.setSelected(false);
+    }//GEN-LAST:event_kontan2ActionPerformed
+
+    private void piutang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piutang1ActionPerformed
+        kontan2.setSelected(false);
+    }//GEN-LAST:event_piutang1ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1269,6 +1294,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel home;
     private javax.swing.JButton homebutton;
     private javax.swing.JPanel hutang;
+    private javax.swing.JRadioButton hutang1;
     private javax.swing.JButton hutangbutton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1314,10 +1340,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1339,6 +1361,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JRadioButton kontan1;
+    private javax.swing.JRadioButton kontan2;
     private javax.swing.JPanel laporan;
     private javax.swing.JButton laporanbutton;
     private javax.swing.JPanel logout;
@@ -1350,6 +1374,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel penjualan;
     private javax.swing.JButton penjualanbutton;
     private javax.swing.JPanel piutang;
+    private javax.swing.JRadioButton piutang1;
     private javax.swing.JButton piutangbutton;
     private javax.swing.JLabel tgl1;
     private javax.swing.JLabel tgl2;
