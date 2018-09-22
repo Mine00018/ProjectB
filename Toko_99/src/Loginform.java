@@ -39,6 +39,7 @@ public class Loginform extends javax.swing.JFrame {
         password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 343, 293, -1));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("LOGIN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
